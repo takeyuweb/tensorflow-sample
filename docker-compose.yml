@@ -1,0 +1,14 @@
+version: '3'
+services:
+  tensorflow:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - UID=${UID:-1000}
+        - WORKDIR=/tensorflow-sample
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/tensorflow-sample
+    command: sleep infinity

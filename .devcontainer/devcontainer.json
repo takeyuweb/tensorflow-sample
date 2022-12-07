@@ -1,0 +1,20 @@
+{
+    "name": "tensorflow-sample",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "tensorflow",
+    "workspaceFolder": "/tensorflow-sample",
+    "extensions": [
+        "ms-python.python"
+    ],
+    "settings": {
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true
+    },
+    "features": {
+        "git": {
+            "version": "latest"
+        }
+    }
+}
