@@ -7,6 +7,12 @@ services:
       args:
         - UID=${UID:-1000}
         - WORKDIR=/tensorflow-sample
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
     stdin_open: true
     tty: true
     volumes:
