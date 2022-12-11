@@ -20,10 +20,5 @@
                 ]
             }
         }
-    },
-    "features": {
-        "git": {
-            "version": "latest"
-        }
     }
 }
