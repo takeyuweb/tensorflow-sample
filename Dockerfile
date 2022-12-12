@@ -4,8 +4,6 @@ RUN apt-get update -qq
 RUN apt-get install -y git
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN pip install autopep8
-
 ARG UID=1000
 RUN useradd -m -u ${UID} user
 
