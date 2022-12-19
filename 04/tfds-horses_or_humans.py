@@ -57,6 +57,10 @@ def augmentimages(image, label):
 # バッチ処理
 # シャッフルしたものを10個ずつ取り出してバッチ処理する
 # バッチ処理することでより効率的に学習できるようになる
+# CPUを使うTransformが終わったらGPUを使うLoadを進める
+# Load中CPUは暇になるので、次のバッチのTransformを進める
+# Transform中でGPUが暇になったら、前のバッチのLoadを進める
+# このようにして効率的にコンピューティング資源を使える
 train_batches = data.map(augmentimages).shuffle(100).batch(10)
 
 val_batches = val_data.batch(32)
