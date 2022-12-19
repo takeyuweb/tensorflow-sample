@@ -1,6 +1,7 @@
 # https://github.com/lmoroney/tfbook/blob/master/chapter3/Horse_or_Human_NoValidation.ipynb
 import tensorflow as tf
 import tensorflow_datasets as tfds
+import tensorflow_addons as tfa
 from tensorflow.keras.optimizers import RMSprop
 
 # 画像拡張
@@ -11,6 +12,7 @@ def augmentimages(image, label):
     image = tf.cast(image, tf.float32)
     image = (image / 255)
     image = tf.image.random_flip_left_right(image)
+    image = tfa.image.rotate(image, 40, interpolation="NEAREST")
     return image, label
 
 
