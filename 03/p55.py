@@ -37,7 +37,7 @@ x = layers.Dense(1, activation='sigmoid')(x)
 
 model = Model(pre_trained_model.input, x)
 
-model.compile(optimizer=RMSprop(lr=0.0001),
+model.compile(optimizer=RMSprop(learning_rate=0.0001),
               loss='binary_crossentropy',
               metrics=['acc'])
 
