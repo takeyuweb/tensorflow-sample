@@ -61,8 +61,10 @@ def augmentimages(image, label):
 # Load中CPUは暇になるので、次のバッチのTransformを進める
 # Transform中でGPUが暇になったら、前のバッチのLoadを進める
 # このようにして効率的にコンピューティング資源を使える
-train_batches = data.map(augmentimages).shuffle(100).batch(10)
+data = data.map(augmentimages).shuffle(100).cache()
+train_batches = data.batch(10)
 
+val_data = val_data.cache()
 val_batches = val_data.batch(32)
 
 # Transform ここまで
