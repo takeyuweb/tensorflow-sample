@@ -16,7 +16,8 @@ mnist = tf.keras.datasets.fashion_mnist
 (training_images, training_labels), (test_images, test_labels) = tfds.as_numpy(
     tfds.load(
         'fashion_mnist',
-        split=['train', 'test'],    # traint と test の画像とラベルの入ったデータセットアダプタの配列を返す
+        # traint と test の画像とラベルの入ったデータセットアダプタの配列を返す
+        split=['train[:20%]', 'test'],  # train の先頭から20%のデータを使う
         batch_size=-1,  # 全件
         as_supervised=True  # タプルで返す
     )
