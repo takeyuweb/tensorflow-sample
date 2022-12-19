@@ -3,13 +3,24 @@ import tensorflow as tf
 import tensorflow_datasets as tfds
 from tensorflow.keras.optimizers import RMSprop
 
+# 画像拡張
+# マッピング関数を作成して処理する
+
+
+def augmentimages(image, label):
+    image = tf.cast(image, tf.float32)
+    image = (image / 255)
+    image = tf.image.random_flip_left_right(image)
+    return image, label
+
+
 data = tfds.load('horses_or_humans', split='train', as_supervised=True)
 val_data = tfds.load('horses_or_humans', split='test', as_supervised=True)
 
 # バッチ処理
 # シャッフルしたものを10個ずつ取り出してバッチ処理する
 # バッチ処理することでより効率的に学習できるようになる
-train_batches = data.shuffle(100).batch(10)
+train_batches = data.map(augmentimages).shuffle(100).batch(10)
 
 val_batches = val_data.batch(32)
 
