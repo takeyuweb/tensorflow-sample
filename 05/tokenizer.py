@@ -1,11 +1,13 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 sentences = [
     'Today is a sunny day',
     'Today is a rainy day',
-    'Is it sunny today?'
+    'Is it sunny today?',
+    'I really enjoyed walking in the snow today'
 ]
 
 # OOV=Out-Of-Vocabulary
@@ -14,9 +16,12 @@ tokenizer.fit_on_texts(sentences)
 word_index = tokenizer.word_index
 
 sequences = tokenizer.texts_to_sequences(sentences)
-
-print(sequences)
-# [[1, 2, 3, 4, 5], [1, 2, 3, 6, 5], [2, 7, 4, 1]]
+padded = pad_sequences(sequences)
+print(padded)
+# [[ 0  0  0  2  3  4  5  6]
+#  [ 0  0  0  2  3  4  7  6]
+#  [ 0  0  0  0  3  8  5  2]
+#  [ 9 10 11 12 13 14 15  2]]
 
 text_data = [
     'Today is a snowy day',
